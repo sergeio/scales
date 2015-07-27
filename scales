@@ -25,7 +25,7 @@ jazz_minor = [0, 2, 3, 5, 7, 9, 11, 0]
 def main():
     """Main entrypoint.  Does the things!"""
     options, args, _ = parse_options()
-    start = args[0] if args else random.choice(notes)
+    start = args[0] if args else random.choice(notes_ascii)
     if not options.all_types:
         print make_scale(start, globals()[options.scale_type])
     else:
