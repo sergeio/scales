@@ -12,7 +12,8 @@ KEY         Starting note of scales.  If omitted, make random.
 """
 
 
-notes = ['C', 'C♯', 'D', 'E♭', 'E', 'F', 'F♯', 'G', 'A♭', 'A', 'B♭', 'B']
+notes =       ['C', 'C♯', 'D', 'E♭', 'E', 'F', 'F♯', 'G', 'A♭', 'A', 'B♭', 'B']
+notes_ascii = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
 
 major = [0, 2, 4, 5, 7, 9, 11, 0]
 even = [0, 2, 4, 6, 8, 10, 0]
@@ -48,7 +49,7 @@ def make_scale(starting_note, scale_indexes):
     scale_indexes: List of indexes that make up the scale.  Can also be thought
         of as the distance from the starting note of the scale, in half-tones.
     """
-    start_index = notes.index(starting_note)
+    start_index = notes_ascii.index(starting_note)
     all_notes = list(notes)
     all_notes = all_notes[start_index:] + all_notes[:start_index]
     return '  '.join(all_notes[i] for i in scale_indexes)
