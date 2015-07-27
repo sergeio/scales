@@ -23,6 +23,7 @@ jazz_minor = [0, 2, 3, 5, 7, 9, 11, 0]
 
 
 def main():
+    """Main entrypoint.  Does the things!"""
     options, args, _ = parse_options()
     start = args[0] if args else random.choice(notes)
     if not options.all_types:
@@ -56,6 +57,7 @@ def make_scale(starting_note, scale_indexes):
 
 
 def parse_options():
+    """Parse command line options."""
     parser = optparse.OptionParser(USAGE)
     parser.add_option(
         '-a', '--all-types', dest='all_types', action='store_true',
