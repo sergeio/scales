@@ -50,6 +50,9 @@ def make_scale(starting_note, scale_indexes):
     scale_indexes: List of indexes that make up the scale.  Can also be thought
         of as the distance from the starting note of the scale, in half-tones.
     """
+    if starting_note not in notes_ascii:
+        return "Starting note '%s' does not appear in known notes: %s" % (
+            starting_note, notes_ascii)
     start_index = notes_ascii.index(starting_note)
     all_notes = list(notes)
     all_notes = all_notes[start_index:] + all_notes[:start_index]
