@@ -21,9 +21,22 @@ jazz_minor = [0, 2, 3, 5, 7, 9, 11, 0]
 
 
 def main():
-    options, args = parse_options()
+    options, args, _ = parse_options()
     start = args[0] if args else random.choice(notes)
-    print make_scale(start, globals()[options.scale_type])
+    if not options.all_types:
+        print make_scale(start, globals()[options.scale_type])
+    else:
+        print make_all_types(start)
+
+
+def make_all_types(starting_note):
+    """Return a string representing all supported types of scales."""
+    _, _, parser = parse_options()
+    output = []
+    for scale_type in parser.get_option('--scale-type').choices:
+        output.append(scale_type + ':')
+        output.append(make_scale(starting_note, globals()[scale_type]))
+    return '\n'.join(output)
 
 
 def make_scale(starting_note, scale_indexes):
@@ -42,13 +55,15 @@ def make_scale(starting_note, scale_indexes):
 
 def parse_options():
     parser = optparse.OptionParser(USAGE)
+    parser.add_option(
+        '-a', '--all-types', dest='all_types', action='store_true')
     parser.add_option('-s', '--scale-type', dest='scale_type', metavar='STYPE',
         choices=['major', 'even', 'blues', 'hungarian_minor', 'jazz_minor'],
         default='blues',
         help='Selects the type of scale to output.  Default is %default',
     )
     options, args = parser.parse_args()
-    return options, args
+    return options, args, parser
 
 
 if __name__ == '__main__':
