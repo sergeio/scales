@@ -58,12 +58,12 @@ def make_scale(starting_note, scale_indexes):
 def parse_options():
     parser = optparse.OptionParser(USAGE)
     parser.add_option(
-        '-a', '--all-types', dest='all_types', action='store_true')
+        '-a', '--all-types', dest='all_types', action='store_true',
+        help='Show all supported types of scales.')
     parser.add_option('-s', '--scale-type', dest='scale_type', metavar='STYPE',
         choices=['major', 'even', 'blues', 'hungarian_minor', 'jazz_minor'],
         default='blues',
-        help='Selects the type of scale to output.  Default is %default',
-    )
+        help='Selects the type of scale to output.  Default is %default.')
     options, args = parser.parse_args()
     return options, args, parser
 
